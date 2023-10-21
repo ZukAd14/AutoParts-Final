@@ -1,0 +1,46 @@
+.customThumbnail {
+    width: 100px;
+    height: 75px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    transition: border-color 0.2s;
+  
+    &.active {
+      border-color: #007bff;
+    }
+  
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  
+  .customMainImage {
+
+    max-width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+  }
+
+  .customMainImageContainer {
+    display: flex;
+  flex-direction: column;
+  height: 350px;
+  width: 550px;
+  }
+
+  .formControl {
+    width: 30px;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        appearance: none;
+        margin: 0;
+    }
+  }
+
+  .inputBtnGroup {
+    button {
+        margin: 0 5px 0 5px;
+    }
+  }
