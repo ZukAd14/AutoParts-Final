@@ -1,9 +1,8 @@
 
-import initialState from './initialState';
-import axios from 'axios';
+
 
 //Selectors
-export const getCartItems = (state) => state.cart.items;
+export const getCartItems = (state) => state.cart.products;
 
 //actions
 const createActionName = (actionName) => `app/products/${actionName}`;
@@ -11,73 +10,90 @@ const createActionName = (actionName) => `app/products/${actionName}`;
 const ADD_TO_CART = createActionName('ADD_TO_CART');
 const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 const UPDATE_CART_ITEM = createActionName('UPDATE_CART_ITEM');
-
+const CLEAR_CART_ITEMS = createActionName('CLEAR_CART_ITEMS');
 //action creators
 
-export const addToCart = (product) => ({
-    type: ADD_TO_CART,
-    payload: product,
-  });
+export const addToCart = (payload) => ({ payload, type: ADD_TO_CART });
   
-  export const removeFromCart = (productId) => ({
-    type: REMOVE_FROM_CART,
-    payload: productId,
-  });
+export const removeFromCart = (payload) => ({ payload, type: REMOVE_FROM_CART });
   
-  export const updateCartItem = (productId, quantity) => ({
-    type: UPDATE_CART_ITEM,
-    payload: { productId, quantity },
-  });
+export const updateCartItem = (payload) => ({ payload, type: UPDATE_CART_ITEM });
 
-  
-  
-  //LocalStorage
+export const clearCartItems = () => {
+  localStorage.removeItem('cart');
 
-  const loadCartState = () => {
-    try {
-      const cartState = localStorage.getItem('cartState');
-      return cartState ? JSON.parse(cartState) : initialState.cart;
-    } catch (error) {
-      console.error('Error loading cart state from local storage:', error);
-      return initialState.cart;
-    }
-  };
+  return { type: CLEAR_CART_ITEMS };
+};
   
-  const saveCartState = (cartState) => {
-    try {
-      const serializedCartState = JSON.stringify(cartState);
-      localStorage.setItem('cartState', serializedCartState);
-    } catch (error) {
-      console.error('Error saving cart state to local storage:', error);
-    }
-  };
+export const getLocalStorage = () => {
+  const localStorageData = localStorage.getItem('cart');
+  if (localStorageData) {
+    return JSON.parse(localStorageData);
+  } else {
+    return [];
+  }
+};
   
-  const initialCartState = loadCartState();
 
 
-  const cartReducer = (state = initialCartState, action) => {
+
+  const cartReducer = (statePart = [], action) => {
     switch (action.type) {
-      case ADD_TO_CART:
+      case ADD_TO_CART: {
+        if (
+          statePart.products.find((product) => product.id === action.payload.id)
+        ) {
+          return {
+            ...statePart,
+            products: statePart.products.map((product) =>
+              product.id === action.payload.id
+                ? {
+                    ...product,
+                    quantity: product.quantity + action.payload.quantity,
+                    userComment: product.userComment,
+                  }
+                : product,
+            ),
+          };
+        } else {
+          return {
+            ...statePart,
+            products: [
+              ...statePart.products,
+              {
+                ...action.payload,
+                quantity: action.payload.quantity,
+                userComment: '',
+              },
+            ],
+          };
+        }
+      }
+      case REMOVE_FROM_CART: {
         return {
-          ...state,
-          items: [...state.items, { ...action.payload, quantity: 1 }],
-        };
-      case REMOVE_FROM_CART:
-        return {
-          ...state,
-          items: state.items.filter((item) => item.id !== action.payload),
-        };
-      case UPDATE_CART_ITEM:
-        return {
-          ...state,
-          items: state.items.map((item) =>
-            item.id === action.payload.productId
-              ? { ...item, quantity: action.payload.quantity }
-              : item
+          ...statePart,
+          products: statePart.products.filter(
+            (product) => product.id !== action.payload,
           ),
         };
+      }
+      case UPDATE_CART_ITEM: {
+        return {
+          ...statePart,
+          products: statePart.products.map((product) =>
+            product.id === action.payload.id
+              ? { ...product, ...action.payload }
+              : product,
+          ),
+        };
+      }
+      case CLEAR_CART_ITEMS: {
+        return {
+          products: [],
+        };
+      }
       default:
-        return state;
+        return statePart;
     }
   };
   
