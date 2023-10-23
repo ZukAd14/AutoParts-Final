@@ -13,10 +13,7 @@ const OrderPage = () => {
     phone: '',
   });
 
-  
-
   const cartProducts = useSelector(getCartItems);
-  console.log(cartProducts)
   const dispatch = useDispatch();
 
   const totalOrderPrice = cartProducts.reduce(
@@ -103,8 +100,10 @@ const OrderPage = () => {
             />
           </div>
         </form>
-        <button onClick={handleSubmitOrder} className={`btn btn-primary ${styles.bthv}`} style={{ background: '#4caf50', border: '#4caf50' }}>
-          Order
+        <button onClick={handleSubmitOrder} 
+          className={`btn btn-primary ${styles.bthv}`} 
+          style={{ background: '#4caf50', border: '#4caf50' }}>
+            Order
         </button>
       </div>
     </div>

@@ -1,6 +1,3 @@
-
-
-
 //Selectors
 export const getCartItems = (state) => state.cart.products;
 

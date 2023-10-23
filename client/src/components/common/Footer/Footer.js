@@ -6,9 +6,9 @@ const Footer = () => {
 
     return (
         <MDBFooter className={`text-center font-small ${styles.footer}`}>
-        <div className='container'>
-            &copy; Adam Żukowski 2023
-        </div>
+            <div className='container'>
+                &copy; Adam Żukowski 2023
+            </div>
         </MDBFooter>
     );
 };

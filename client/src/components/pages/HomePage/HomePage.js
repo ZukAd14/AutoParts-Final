@@ -39,7 +39,7 @@ const Home = () => {
 
     rows.push(row);
     return rows;
-};
+  };
 
   return (
     <div>
@@ -47,15 +47,18 @@ const Home = () => {
       {renderProducts()}
       <nav className='d-flex justify-content-center align-items-center mt-4'>
         <ul className='pagination mb-4'>
-        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`} onClick={() => handlePageChange(currentPage - 1)}>
+          <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`} 
+            onClick={() => handlePageChange(currentPage - 1)}>
             <button className="page-link" disabled={currentPage === 1}>
               <FaAngleLeft />
             </button>
           </li>
           {Array.from({ length: totalPages }, (_, i) => (
             <li key={i} className={`page-item ${i + 1 === currentPage ? 'active' : ''}`} >
-              <button className='page-link' onClick={() => handlePageChange(i + 1)} style={{background: '#4caf50', border: '#4caf50'} }>
-                {i + 1}
+              <button className='page-link' 
+                onClick={() => handlePageChange(i + 1)} 
+                style={{background: '#4caf50', border: '#4caf50'} }>
+                  {i + 1}
               </button>
             </li>
           ))}

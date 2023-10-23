@@ -7,14 +7,11 @@ import axios from 'axios';
 export const getAll = ({ products }) => products.data;
 export const getById = ({ products }, productId) => products.data.find((product) => product.id === productId);
 
-
 //actions
 const createActionName = (actionName) => `app/products/${actionName}`;
-//const GET_PRODUCTS = createActionName('GET_PRODUCTS');
 const UPDATE_PRODUCTS = createActionName('UPDATE_PRODUCTS');
 
 //action creators
-//export const getProducts = () => ({ type: GET_PRODUCTS });
 export const updateProducts = (payload) => ({ type: UPDATE_PRODUCTS, payload });
 
 export const getProductsRequest = () => {

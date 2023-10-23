@@ -9,19 +9,13 @@
   }
   
   .leftSection,
-  .rightSection,
-  .centeredSection {
+  .rightSection {
     flex: 1;
     background-color: #333;
     color: white;
     padding: 20px;
     text-align: center; 
     margin: 0 15px;
-  }
-  
-  .centeredSection {
-    align-items: center;
-    flex-direction: column;
   }
   
   .bthv:hover {
@@ -39,11 +33,11 @@
 
   @media (max-width: 768px) {
     .orderPage {
-      flex-direction: column; /* Zmień układ na kolumnowy */
+      flex-direction: column;
     }
   
     .leftSection,
     .rightSection {
-      margin: 0; /* Usuń margines */
+      margin: 0;
     }
   }

@@ -8,7 +8,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = () => {
   const cartItems = useSelector(getCartItems);
-  
   const dispatch = useDispatch();
 
   const handleRemoveFromCart = (productId) => {
@@ -96,9 +95,16 @@ const Cart = () => {
               </tr>
             ))}
           </tbody>
-          <button onClick={clearCart} className={`btn btn-primary ${styles.bthv} mb-2 mt-2 me-2`} style={{background: '#4caf50', border: '#4caf50'}}>Clear Cart</button>
+          <button onClick={clearCart} 
+            className={`btn btn-primary ${styles.bthv} mb-2 mt-2 me-2`} 
+            style={{background: '#4caf50', border: '#4caf50'}}>
+              Clear Cart
+          </button>
           <Link to='/order/summary'>
-            <button className={`btn btn-primary ${styles.bthv} mb-2 mt-2`} style={{background: '#4caf50', border: '#4caf50'}}>Continue to Summary</button>
+            <button className={`btn btn-primary ${styles.bthv} mb-2 mt-2`} 
+              style={{background: '#4caf50', border: '#4caf50'}}>
+                Continue to Summary
+            </button>
           </Link>
         </table>
         </div>

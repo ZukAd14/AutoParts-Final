@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateCartItem } from './redux/cartRedux';
 import OrderPage from './components/pages/OrderPage/OrderPage';
+import NotFound from './components/pages/NotFound/NotFound';
 import './styles/normalize.scss';
 import './styles/global.scss';
 
@@ -38,6 +39,7 @@ const dispatch = useDispatch();
           <Route path='/product/:id' element={<ProductPage />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/order/summary' element={<OrderPage />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Container>
       <Footer />

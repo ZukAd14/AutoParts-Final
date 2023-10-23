@@ -7,7 +7,8 @@ const initialState = {
     },
     cart: {
         products: getLocalStorage(),
-    }
+    },
+    orders: [],
 };
 
 export default initialState;
