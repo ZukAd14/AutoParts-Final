@@ -56,8 +56,8 @@ const ProductPage = () => {
     <div className="container mt-5">
       {product ? (
         <div className="row">
-          <div className="col-md-6">
-          <div className={`${styles.customMainImageContainer}`}>
+          <div className="col-md-6 order-md-last">
+            <div className={`${styles.customMainImageContainer}`}>
               <img
                 className={styles.customMainImage}
                 src={`${IMG_URL}/${product.name.replace(/ /g, '')}${activeThumbnail + 1}.jpg`}
@@ -65,7 +65,7 @@ const ProductPage = () => {
               />
             </div>
             <div className={`d-flex flex-row ${styles.customThumbnail}`}>
-              {Array.from({ length: 4 }, (_, index) => (
+            {Array.from({ length: 4 }, (_, index) => (
                 <img
                   key={index}
                   className={`${styles.customThumbnail} ${activeThumbnail === index ? styles.active : ''}`}
@@ -75,9 +75,8 @@ const ProductPage = () => {
                 />
               ))}
             </div>
-            
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 order-md-first">
             <h2 className={styles.text}>{product.name}</h2>
             <p className={styles.text}>Price: {product.price} PLN</p>
             <div className="mb-3">
@@ -88,32 +87,38 @@ const ProductPage = () => {
                 <span className={styles.inputBtnGroup}>
                   <button
                     type="button"
-                    className={`btn btn-primary ${styles.bthv}`} style={{background: '#4caf50', border: '#4caf50'}}
+                    className={`btn btn-primary ${styles.bthv}`}
+                    style={{ background: '#4caf50', border: '#4caf50' }}
                     onClick={handleDecrementQuantity}
                   >
                     -
                   </button>
                 </span>
-              <input
-                type="number"
-                className={styles.formControl}
-                id="quantity"
-                min="1"
-                value={quantity}
-                onChange={handleQuantityChange}
-              />
-              <span className={styles.inputBtnGroup}>
+                <input
+                  type="number"
+                  className={styles.formControl}
+                  id="quantity"
+                  min="1"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                />
+                <span className={styles.inputBtnGroup}>
                   <button
                     type="button"
-                    className={`btn btn-primary ${styles.bthv}`} style={{background: '#4caf50', border: '#4caf50'}}
+                    className={`btn btn-primary ${styles.bthv}`}
+                    style={{ background: '#4caf50', border: '#4caf50' }}
                     onClick={handleIncrementQuantity}
                   >
                     +
                   </button>
                 </span>
-                </div>
+              </div>
             </div>
-            <button onClick={handleAddToCart} className={`btn btn-primary ${styles.bthv}`} style={{background: '#4caf50', border: '#4caf50'}}>
+            <button
+              onClick={handleAddToCart}
+              className={`btn btn-primary ${styles.bthv}`}
+              style={{ background: '#4caf50', border: '#4caf50' }}
+            >
               Add to Cart
             </button>
             <p className={`mt-4 ${styles.text}`}>{product.description}</p>

@@ -16,6 +16,7 @@ const OrderPage = () => {
   
 
   const cartProducts = useSelector(getCartItems);
+  console.log(cartProducts)
   const dispatch = useDispatch();
 
   const totalOrderPrice = cartProducts.reduce(
@@ -52,6 +53,7 @@ const OrderPage = () => {
             <p className={styles.underlinedTop}>{product.name}</p>
             <p>Price: {product.price} PLN</p>
             <p>Quantity: {product.quantity}</p>
+            <p>Your Comment: {product.userComment}</p>
             <p className={styles.underlinedBottom}>Total: {product.price * product.quantity} PLN</p>
           </div>
         ))}

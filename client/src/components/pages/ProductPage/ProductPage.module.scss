@@ -59,3 +59,24 @@
     background-color: $buttonsHover !important;
     border: $buttonsHover !important;
 }
+
+@media (max-width: 1200px) {
+  .customMainImageContainer {
+    height: 200px ;
+    width: 400px;
+  }
+}
+
+@media (max-width: 992px) {
+  .customMainImageContainer {
+    height: 150px ;
+    width: 250px;
+  }
+
+  .customThumbnail {
+    width: 75px;
+    height: 50px;
+    margin-right: 5px;
+  }
+}
+

@@ -8,7 +8,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = () => {
   const cartItems = useSelector(getCartItems);
-  console.log(cartItems)
+  
   const dispatch = useDispatch();
 
   const handleRemoveFromCart = (productId) => {
@@ -25,6 +25,10 @@ const Cart = () => {
 
   const updateLocalStorage = () => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
+  };
+
+  const handleCommentChange = (productId, comment) => {
+    dispatch(updateCartItem({ id: productId, userComment: comment }));
   };
 
   useEffect(() => {
@@ -46,9 +50,10 @@ const Cart = () => {
   }, [cartItems]);
 
   return (
-    <div>
+    <div className="container mt-5">
       <h2 className='text-light'>Your Cart</h2>
       {cartItems.length > 0 ? (
+        <div className='table-responsive'>
         <table className={`table ${styles.tablebg}`}>
           <thead>
             <tr>
@@ -68,9 +73,7 @@ const Cart = () => {
                   <input
                     type="text"
                     value={item.userComment}
-                    onChange={(e) =>
-                      handleQuantityChange(item.id, e.target.value)
-                    }
+                    onChange={(e) => handleCommentChange(item.id, e.target.value)}
                   />
                 </td>
                 <td>${item.price}</td>
@@ -93,11 +96,12 @@ const Cart = () => {
               </tr>
             ))}
           </tbody>
-          <button onClick={clearCart} className={`btn btn-primary ${styles.bthv} mb-2 mt-2`} style={{background: '#4caf50', border: '#4caf50'}}>Clear Cart</button>
+          <button onClick={clearCart} className={`btn btn-primary ${styles.bthv} mb-2 mt-2 me-2`} style={{background: '#4caf50', border: '#4caf50'}}>Clear Cart</button>
           <Link to='/order/summary'>
-            <button className={`btn btn-primary ${styles.bthv} ms-2 mb-2 mt-2`} style={{background: '#4caf50', border: '#4caf50'}}>Continue to Summary</button>
+            <button className={`btn btn-primary ${styles.bthv} mb-2 mt-2`} style={{background: '#4caf50', border: '#4caf50'}}>Continue to Summary</button>
           </Link>
         </table>
+        </div>
         
       ) : (
         <p className='text-light'>Your cart is empty.</p>

@@ -30,7 +30,7 @@ const Home = () => {
     const row = (
       <div key={currentPage} className="row">
         {productsOnPage.map((product) => (
-          <div key={product.id} className="col-md-3">
+          <div key={product.id} className="col-md-6 col-lg-4 col-xxl-3">
             <Product product={product} />
           </div>
         ))}

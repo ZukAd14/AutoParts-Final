@@ -15,13 +15,13 @@
     background-color: #333;
     color: white;
     padding: 20px;
-    text-align: center; // Wycentrowanie tekstu w sekcjach
+    text-align: center; 
     margin: 0 15px;
   }
   
   .centeredSection {
     align-items: center;
-    flex-direction: column; // Zmiana kierunku flex na kolumnę
+    flex-direction: column;
   }
   
   .bthv:hover {
@@ -35,4 +35,15 @@
 
   .underlinedBottom {
     border-bottom: solid 1px $text;
+  }
+
+  @media (max-width: 768px) {
+    .orderPage {
+      flex-direction: column; /* Zmień układ na kolumnowy */
+    }
+  
+    .leftSection,
+    .rightSection {
+      margin: 0; /* Usuń margines */
+    }
   }
