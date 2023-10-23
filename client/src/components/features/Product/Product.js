@@ -1,5 +1,6 @@
 import React from 'react';
 import { IMG_URL } from '../../../config';
+import styles from './Product.module.scss';
 
 const Product = ({ product }) => {
   return (
@@ -8,7 +9,7 @@ const Product = ({ product }) => {
       <div className="card-body">
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text">Price: {product.price} PLN</p>
-        <a href={`/product/${product.id}`} className="btn btn-primary">
+        <a href={`/product/${product.id}`} className={`btn btn-primary ${styles.bthv}`} style={{background: '#4caf50', border: '#4caf50'}}>
           View Details
         </a>
       </div>

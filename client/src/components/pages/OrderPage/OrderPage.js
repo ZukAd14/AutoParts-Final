@@ -3,7 +3,7 @@ import axios from 'axios';
 import { API_URL } from '../../../config';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCartItems, getCartItems } from '../../../redux/cartRedux';
-import { useHistory } from 'react-router-dom';
+import styles from './OrderPage.module.scss';
 
 const OrderPage = () => {
   const [orderData, setOrderData] = useState({
@@ -13,9 +13,15 @@ const OrderPage = () => {
     phone: '',
   });
 
+  
+
   const cartProducts = useSelector(getCartItems);
   const dispatch = useDispatch();
- 
+
+  const totalOrderPrice = cartProducts.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
 
   const handleSubmitOrder = async () => {
     try {
@@ -38,59 +44,67 @@ const OrderPage = () => {
   };
 
   return (
-    <div>
-      <h2>Order Summary</h2>
-      {cartProducts.map((product) => (
-      <div key={product.id}>
-      <p>{product.name}</p>
-      <p>Price: ${product.price}</p>
-      <p>Quantity: {product.quantity}</p>
-      <p>Total: ${product.price * product.quantity}</p>
-   </div>
-   ))}
-  
-
-      <h2>Contact Details</h2>
-      <form>
-        <div>
-          <label>First Name:</label>
-          <input
-            type="text"
-            name="firstName"
-            value={orderData.firstName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label>Last Name:</label>
-          <input
-            type="text"
-            name="lastName"
-            value={orderData.lastName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label>Address:</label>
-          <input
-            type="text"
-            name="address"
-            value={orderData.address}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label>Phone:</label>
-          <input
-            type="text"
-            name="phone"
-            value={orderData.phone}
-            onChange={handleInputChange}
-          />
-        </div>
-      </form>
-
-      <button onClick={handleSubmitOrder}>Order</button>
+    <div className={styles.orderPage}>
+      <div className={`${styles.leftSection}`}>
+        <h2>Order Summary</h2>
+        {cartProducts.map((product) => (
+          <div key={product.id}>
+            <p className={styles.underlinedTop}>{product.name}</p>
+            <p>Price: {product.price} PLN</p>
+            <p>Quantity: {product.quantity}</p>
+            <p className={styles.underlinedBottom}>Total: {product.price * product.quantity} PLN</p>
+          </div>
+        ))}
+        <p>Total Order Price: {totalOrderPrice} PLN</p>
+      </div>
+      <div className={`${styles.rightSection}`}>
+        <h2>Contact Details</h2>
+        <form>
+          <div className='mb-3'>
+            <label>First Name:</label>
+            <input
+              type="text"
+              name="firstName"
+              className="form-control"
+              value={orderData.firstName}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label>Last Name:</label>
+            <input
+              type="text"
+              name="lastName"
+              className="form-control"
+              value={orderData.lastName}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label>Address:</label>
+            <input
+              type="text"
+              name="address"
+              className="form-control"
+              value={orderData.address}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label>Phone:</label>
+            <input
+              type="text"
+              name="phone"
+              className="form-control"
+              value={orderData.phone}
+              onChange={handleInputChange}
+            />
+          </div>
+        </form>
+        <button onClick={handleSubmitOrder} className={`btn btn-primary ${styles.bthv}`} style={{ background: '#4caf50', border: '#4caf50' }}>
+          Order
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,6 @@
+@import '../../../styles/variables.scss';
+
+.bthv:hover {
+    background-color: $buttonsHover !important;
+    border: $buttonsHover !important;
+}

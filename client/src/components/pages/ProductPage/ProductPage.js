@@ -78,17 +78,17 @@ const ProductPage = () => {
             
           </div>
           <div className="col-md-6">
-            <h2>{product.name}</h2>
-            <p>Price: {product.price} PLN</p>
+            <h2 className={styles.text}>{product.name}</h2>
+            <p className={styles.text}>Price: {product.price} PLN</p>
             <div className="mb-3">
-              <label htmlFor="quantity" className="form-label">
+              <label htmlFor="quantity" className={styles.label}>
                 Quantity:
               </label>
               <div className="input-group">
                 <span className={styles.inputBtnGroup}>
                   <button
                     type="button"
-                    className="btn btn-primary"
+                    className={`btn btn-primary ${styles.bthv}`} style={{background: '#4caf50', border: '#4caf50'}}
                     onClick={handleDecrementQuantity}
                   >
                     -
@@ -105,7 +105,7 @@ const ProductPage = () => {
               <span className={styles.inputBtnGroup}>
                   <button
                     type="button"
-                    className="btn btn-primary"
+                    className={`btn btn-primary ${styles.bthv}`} style={{background: '#4caf50', border: '#4caf50'}}
                     onClick={handleIncrementQuantity}
                   >
                     +
@@ -113,10 +113,10 @@ const ProductPage = () => {
                 </span>
                 </div>
             </div>
-            <button onClick={handleAddToCart} className="btn btn-primary">
+            <button onClick={handleAddToCart} className={`btn btn-primary ${styles.bthv}`} style={{background: '#4caf50', border: '#4caf50'}}>
               Add to Cart
             </button>
-            <p className="mt-4">{product.description}</p>
+            <p className={`mt-4 ${styles.text}`}>{product.description}</p>
           </div>
         </div>
       ) : (

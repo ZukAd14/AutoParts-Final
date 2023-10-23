@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCartItems, getCartItems, removeFromCart, updateCartItem } from '../../../redux/cartRedux';
 import { Link } from 'react-router-dom';
+import styles from './Cart.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = () => {
   const cartItems = useSelector(getCartItems);
@@ -44,9 +47,9 @@ const Cart = () => {
 
   return (
     <div>
-      <h2>Your Cart</h2>
+      <h2 className='text-light'>Your Cart</h2>
       {cartItems.length > 0 ? (
-        <table>
+        <table className={`table ${styles.tablebg}`}>
           <thead>
             <tr>
               <th>Product</th>
@@ -75,6 +78,7 @@ const Cart = () => {
                   <input
                     type="number"
                     value={item.quantity}
+                    className={styles.formControl}
                     onChange={(e) =>
                       handleQuantityChange(item.id, e.target.value)
                     }
@@ -82,21 +86,23 @@ const Cart = () => {
                 </td>
                 <td>${item.price * item.quantity}</td>
                 <td>
-                  <button onClick={() => handleRemoveFromCart(item.id)}>
-                    Remove
+                  <button onClick={() => handleRemoveFromCart(item.id)} className={`btn btn-link remove-button ${styles.btrm}`}>
+                    <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
+          <button onClick={clearCart} className={`btn btn-primary ${styles.bthv} mb-2 mt-2`} style={{background: '#4caf50', border: '#4caf50'}}>Clear Cart</button>
+          <Link to='/order/summary'>
+            <button className={`btn btn-primary ${styles.bthv} ms-2 mb-2 mt-2`} style={{background: '#4caf50', border: '#4caf50'}}>Continue to Summary</button>
+          </Link>
         </table>
+        
       ) : (
-        <p>Your cart is empty.</p>
+        <p className='text-light'>Your cart is empty.</p>
       )}
-      <button onClick={clearCart}>Clear Cart</button>
-      <Link to='/order/summary'>
-        <button>Continue to Summary</button>
-      </Link>
+      
     </div>
   );
 };

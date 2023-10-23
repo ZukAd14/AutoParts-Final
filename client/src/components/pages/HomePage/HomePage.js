@@ -43,7 +43,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Strona główna</h1>
+      <h1 className='ms-auto text-center text-light my-4 py-2'>Our Products</h1>
       {renderProducts()}
       <nav className='d-flex justify-content-center align-items-center mt-4'>
         <ul className='pagination mb-4'>
@@ -53,8 +53,8 @@ const Home = () => {
             </button>
           </li>
           {Array.from({ length: totalPages }, (_, i) => (
-            <li key={i} className={`page-item ${i + 1 === currentPage ? 'active' : ''}`}>
-              <button className='page-link' onClick={() => handlePageChange(i + 1)}>
+            <li key={i} className={`page-item ${i + 1 === currentPage ? 'active' : ''}`} >
+              <button className='page-link' onClick={() => handlePageChange(i + 1)} style={{background: '#4caf50', border: '#4caf50'} }>
                 {i + 1}
               </button>
             </li>

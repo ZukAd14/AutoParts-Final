@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .customThumbnail {
     width: 100px;
     height: 75px;
@@ -7,7 +9,7 @@
     transition: border-color 0.2s;
   
     &.active {
-      border-color: #007bff;
+      border-color: $buttons;
     }
   
     &:last-child {
@@ -44,3 +46,16 @@
         margin: 0 5px 0 5px;
     }
   }
+
+  .text {
+    color: $text;
+  }
+
+  .label {
+    color: $text;
+  }
+
+  .bthv:hover {
+    background-color: $buttonsHover !important;
+    border: $buttonsHover !important;
+}

@@ -1,0 +1,28 @@
+@import '../../../styles/variables.scss';
+
+.btrm:hover {
+    color: red !important;
+}
+
+.btrm {
+    color: $buttons !important;
+}
+
+.tablebg {
+    color: #4caf50 !important;
+  }
+
+  .formControl {
+    width: 30px;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        appearance: none;
+        margin: 0;
+    }
+  }
+
+  .bthv:hover {
+    background-color: $buttonsHover !important;
+    border: $buttonsHover !important;
+}

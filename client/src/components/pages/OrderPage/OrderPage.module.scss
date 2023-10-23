@@ -1,0 +1,38 @@
+@import '../../../styles/variables.scss';
+
+
+.orderPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .leftSection,
+  .rightSection,
+  .centeredSection {
+    flex: 1;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center; // Wycentrowanie tekstu w sekcjach
+    margin: 0 15px;
+  }
+  
+  .centeredSection {
+    align-items: center;
+    flex-direction: column; // Zmiana kierunku flex na kolumnę
+  }
+  
+  .bthv:hover {
+    background-color: $buttonsHover !important;
+    border: $buttonsHover !important;
+  }
+  
+  .underlinedTop {
+    border-top: solid 1px $text;
+  }
+
+  .underlinedBottom {
+    border-bottom: solid 1px $text;
+  }

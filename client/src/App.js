@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import  Header  from '../src/components/common/Header/Header';
 import Home from './components/pages/HomePage/HomePage';
 import Footer from './components/common/Footer/Footer';
-import SearchBar from './components/features/SearchBar/SearchBar';
 import { Container } from 'react-bootstrap';
 import ProductPage from './components/pages/ProductPage/ProductPage';
 import Cart from './components/pages/Cart/Cart';
@@ -10,7 +9,8 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateCartItem } from './redux/cartRedux';
 import OrderPage from './components/pages/OrderPage/OrderPage';
-
+import './styles/normalize.scss';
+import './styles/global.scss';
 
 const App = () => {
 const dispatch = useDispatch();
@@ -32,7 +32,6 @@ const dispatch = useDispatch();
   return (
     <div>
       <Header />
-      <SearchBar />
       <Container>
         <Routes>
           <Route path='/' element={<Home />} />
