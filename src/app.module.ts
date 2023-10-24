@@ -13,14 +13,15 @@ import configuration from './config/configuration';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../', 'client', 'build'),
-      serveRoot: '/static',
+      rootPath: join(__dirname, '../..', 'client', 'build'),
+      //serveRoot: '/static',
     }),
     ProductsModule, 
     OrdersModule, 
     PrismaModule, 
-    ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
+    
   ],
   controllers: [AppController],
   providers: [AppService],

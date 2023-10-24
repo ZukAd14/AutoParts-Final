@@ -36,7 +36,19 @@ const ProductPage = () => {
   const handleAddToCart = () => {
     if (product) {
       dispatch(addToCart({ ...product, quantity }));
+      updateLocalStorage();
     }
+  };
+
+  const updateLocalStorage = () => {
+    const updateCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingProductIndex = updateCart.findIndex((item) => item.id === product.id);
+    if (existingProductIndex !== -1) {
+      updateCart[existingProductIndex].quantity += quantity;
+    } else {
+      updateCart.push({ ...product, quantity });
+    }
+    localStorage.setItem('cart', JSON.stringify(updateCart));
   };
 
   useEffect(() => {

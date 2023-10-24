@@ -13,14 +13,17 @@ const Cart = () => {
 
   const handleRemoveFromCart = (productId) => {
     dispatch(removeFromCart(productId));
+    updateLocalStorage();
   };
 
   const handleQuantityChange = (productId, quantity) => {
     dispatch(updateCartItem({ id: productId, quantity: parseInt(quantity, 10) }));
+    updateLocalStorage();
   };
 
   const clearCart = () => {
     dispatch(clearCartItems());
+    localStorage.removeItem('cart');
   };
 
   const updateLocalStorage = () => {

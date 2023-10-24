@@ -30,14 +30,13 @@ exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot({ load: [configuration_1.default], isGlobal: true }),
             serve_static_1.ServeStaticModule.forRoot({
-                rootPath: (0, path_1.join)(__dirname, '../', 'client', 'build'),
-                serveRoot: '/static',
+                rootPath: (0, path_1.join)(__dirname, '../..', 'client', 'build'),
             }),
             products_module_1.ProductsModule,
             orders_module_1.OrdersModule,
             prisma_module_1.PrismaModule,
-            config_1.ConfigModule.forRoot({ load: [configuration_1.default], isGlobal: true }),
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
